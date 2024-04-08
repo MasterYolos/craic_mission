@@ -254,72 +254,7 @@ while(ros::ok())//进入大循环
                     		}
                     		else sametimes = 0;
 	 	                break;
-			// case 5:
-			// 	//改用速度控制
-			// 	setpoint.type_mask =
-			// 	mavros_msgs::PositionTarget::IGNORE_PX |
-			// 	mavros_msgs::PositionTarget::IGNORE_PY |
-			// 	mavros_msgs::PositionTarget::IGNORE_PZ |
-			// 	//mavros_msgs::PositionTarget::IGNORE_VX |
-			// 	//mavros_msgs::PositionTarget::IGNORE_VY |
-			// 	//mavros_msgs::PositionTarget::IGNORE_VZ |
-			// 	mavros_msgs::PositionTarget::IGNORE_AFX |
-			// 	mavros_msgs::PositionTarget::IGNORE_AFY |
-			// 	mavros_msgs::PositionTarget::IGNORE_AFZ |
-			// 	mavros_msgs::PositionTarget::FORCE |
-			// 	mavros_msgs::PositionTarget::IGNORE_YAW;
-			// 	mavros_msgs::PositionTarget::IGNORE_YAW_RATE;
-			// 	vec_pid(-20,0,2,3);
-			// 	if(local_pos.pose.position.x > -20.1 && local_pos.pose.position.x < -19.9)
-			// 	{
-     		//   	                if (sametimes > 20)
-            //   				{
-         	// 	                   step = 6;
-            //             		}
-            //             		else
-            //                		sametimes++;
-            //         		}
-            //         		else sametimes = 0;
-	 	    //             break;
-			// case 6:
-			// 	vec_pid(-20,-20,2,3);
-			// 	if(local_pos.pose.position.y > -20.1 && local_pos.pose.position.y < -19.9)
-			// 	{
-     		//   	                if (sametimes > 20)
-            //   				{
-         	// 	                   step = 7;
-            //             		}
-            //             		else
-            //                		sametimes++;
-            //         		}
-            //         		else sametimes = 0;
-	 	    //             break;
-			// case 7:
-			// 	vec_pid(0,-20,2,3);
-			// 	if(local_pos.pose.position.x > -0.1 && local_pos.pose.position.x < 0.1)
-			// 	{
-     		//   	                if (sametimes > 20)
-            //   				{
-         	// 	                   step = 8;
-            //             		}
-            //             		else
-            //                		sametimes++;
-            //         		}
-            //         		else sametimes = 0;
-	 	    //             break;
-			// case 8:
-			// 	vec_pid(0,0,2,3);
-			// 	if(local_pos.pose.position.x > -0.1 && local_pos.pose.position.x < 0.1 && local_pos.pose.position.y > -0.1 && local_pos.pose.position.y < 0.1)
-			// 	{
-     		//   	                if (sametimes > 20)
-            //   				{
-         	// 	                   step = 9;
-            //             		}
-            //             		else
-            //                		sametimes++;
-            //         		}
-            //         		else sametimes = 0;
-	 	    //             break;
+
 			case 5:
 				offb_set_mode.request.custom_mode = "AUTO.LAND";
 				if (current_state.mode != "AUTO.LAND" && (ros::Time::now() - last_request > ros::Duration(5.0)))
