@@ -5,16 +5,15 @@
     <!-- vehicle pose -->
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
-    <arg name="z" default="0"/>
+    <arg name="z" default="0.1"/>
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
-    <arg name="Y" default="0"/>
+    <arg name="Y" default="1.57"/>
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
     <arg name="world" default="$(find craic_mission)/world/RACE_GROUND/race_worldd.world"/>
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
-
+    <arg name="sdf" default="$(find craic_mission)/models/iris_racer/iris_racer.sdf"/>
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
     <arg name="debug" default="false"/>
@@ -52,5 +51,5 @@
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
 
-    <node pkg="craic_mission" type="offboard_ctl_node" name="offboard_ctl" output="screen"/>
+    <!--node pkg="craic_mission" type="offboard_ctl_node" name="offboard_ctl" output="screen"/-->
 </launch>

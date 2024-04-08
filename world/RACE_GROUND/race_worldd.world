@@ -105,7 +105,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>racingblend.dae</uri>
+              <uri>/home/nuc/craic_ws/src/craic_mission/world/RACE_GROUND/racingblend.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -118,7 +118,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>racingblend.dae</uri>
+              <uri>/home/nuc/craic_ws/src/craic_mission/world/RACE_GROUND/racingblend.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -199,7 +199,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>rings/base_link.stl</uri>
+              <uri>/home/nuc/craic_ws/src/craic_mission/world/RACE_GROUND/rings/base_link.stl</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -222,7 +222,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>rings/base_link.stl</uri>
+              <uri>/home/nuc/craic_ws/src/craic_mission/world/RACE_GROUND/rings/base_link.stl</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -278,10 +278,10 @@
       <pose>-5.87725 1.72994 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>207 731000000</sim_time>
-      <real_time>208 50568827</real_time>
-      <wall_time>1712547963 944616783</wall_time>
-      <iterations>207731</iterations>
+      <sim_time>431 741000000</sim_time>
+      <real_time>224 647749291</real_time>
+      <wall_time>1712583081 656792725</wall_time>
+      <iterations>224010</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -293,10 +293,10 @@
         </link>
       </model>
       <model name='race_worldd'>
-        <pose>-3.00579 -0.000276 0 0 -0 0</pose>
+        <pose>-3.00579 -0.000276 0.001 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>-3.00579 -0.000276 0 0 -0 0</pose>
+          <pose>-3.00579 -0.000276 0.001 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -315,13 +315,45 @@
       <light name='sun'>
         <pose>0 0 10 0 -0 0</pose>
       </light>
+      <light name='user_directional_light_0'>
+        <pose>-2.88122 -0.219284 5 0 -0 0</pose>
+      </light>
+      <light name='user_directional_light_1'>
+        <pose>-1.89511 -0.230625 5 0 -0 0</pose>
+      </light>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>1.31032 -4.70418 7.33996 0 0.789795 1.94018</pose>
+        <pose>6.49786 -5.91625 8.87521 -0 0.653794 2.50818</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <light name='user_directional_light_0' type='directional'>
+      <pose>-2.88122 -0.219284 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.1 0.1 -0.9</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+    </light>
+    <light name='user_directional_light_1' type='directional'>
+      <pose>-1.89511 -0.230625 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.1 0.1 -0.9</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+    </light>
   </world>
 </sdf>
