@@ -12,7 +12,7 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
-    <arg name="world" default="$(find CRAIC_MISSIION)/worlds/RACE_GROUND/race_worldd.world"/>
+    <arg name="world" default="$(find craic_mission)/world/RACE_GROUND/race_worldd.world"/>
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 
     <!-- gazebo configs -->
@@ -52,9 +52,5 @@
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
 
-    <node pkg="offboard_control" type="offboard_ctl_node" name="offboard_ctl" />
-
-</node>
-
-
+    <node pkg="craic_mission" type="offboard_ctl_node" name="offboard_ctl" output="screen"/>
 </launch>

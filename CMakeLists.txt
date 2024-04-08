@@ -204,3 +204,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+find_package(catkin REQUIRED COMPONENTS roscpp)
+include_directories(${catkin_INCLUDE_DIRS})
+
+add_executable(offboard_ctl_node src/offboard_ctl.cpp)
+target_link_libraries(offboard_ctl_node ${catkin_LIBRARIES})
