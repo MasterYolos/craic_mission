@@ -50,6 +50,5 @@
         <arg name="fcu_url" value="$(arg fcu_url)"/>
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
-
-    <node pkg="craic_mission" type="offboard_ctl_node" name="offboard_ctl" output="screen"/>
+    <node pkg="craic_mission" type="Px4_ctl_node" name="Px4_ctl_node" output="screen"/>
 </launch>

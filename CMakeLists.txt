@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -47,11 +48,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
+ add_message_files(
+    FILES
+    Px4sp_msgs.msg
 #   Message2.msg
-# )
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -68,10 +69,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -105,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES craic_mission
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -118,6 +119,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+   ${CMAKE_CURRENT_SOURCE_DIR}/../../devel/include/craic_mission
 )
 
 ## Declare a C++ library
@@ -208,4 +210,9 @@ find_package(catkin REQUIRED COMPONENTS roscpp)
 include_directories(${catkin_INCLUDE_DIRS})
 
 add_executable(offboard_ctl_node src/offboard_ctl.cpp)
+add_executable(Px4_ctl_node src/Px4_Ctl.cpp)
+# 注意他们要放在add_executable之后，即先告诉CMake是哪个节点，再告诉CMake它需要什么依赖
+add_dependencies(Px4_ctl_node ${PROJECT_NAME}_generate_messages_cpp)
+
 target_link_libraries(offboard_ctl_node ${catkin_LIBRARIES})
+target_link_libraries(Px4_ctl_node ${catkin_LIBRARIES})
