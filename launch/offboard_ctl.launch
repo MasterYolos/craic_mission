@@ -51,4 +51,5 @@
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
     <node pkg="craic_mission" type="Px4_ctl_node" name="Px4_ctl_node" output="screen"/>
+    <!--node pkg="craic_mission" type="Mission_manager_node" name="Mission_manager_node" output="screen"/-->
 </launch>
