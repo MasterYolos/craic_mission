@@ -56,6 +56,7 @@ int main(int argc, char **argv)
     while (Px4Sp_Buf[4] == 0)
     {
         ROS_INFO("WAITING FOR TAKEOFF");
+        ros::spinOnce();
         rate.sleep();
     }
 
