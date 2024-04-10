@@ -105,7 +105,7 @@ int main(int argc, char **argv)
             }
             last_request = ros::Time::now();
         }
-
+    
         // 判断当前状态是否解锁，如果没有解锁，则进入if语句内部
         // 这里是5秒钟进行一次判断，避免飞控被大量的请求阻塞
         else if (!current_state.armed && (ros::Time::now() - last_request > ros::Duration(0.1))&&start_flag==0)
