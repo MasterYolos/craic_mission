@@ -9,6 +9,9 @@ mavros_msgs::PositionTarget setpoint; // 位置速度控制消息类
 mavros_msgs::State current_state;
 // 订阅的无人机当前位置数据
 geometry_msgs::PoseStamped local_pos;
+
+float Px4Sp_Buf[4];
+
 // 订阅时的回调函数，接受到该消息体的内容时执行里面的内容，内容是储存飞控当前的状态
 void state_cb(const mavros_msgs::State::ConstPtr &msg)
 {
@@ -19,13 +22,24 @@ void local_pos_cb(const geometry_msgs::PoseStamped::ConstPtr &msg)
 {
     local_pos = *msg;
 }
+
+void MsgSp_Callback(const craic_mission::Px4sp_msgs::ConstPtr& msg)
+{
+    ROS_INFO("px4_commande topic receive");
+    ROS_INFO("x:%f,y:%f,z:%f,yaw:%f",msg->x,msg->y,msg->z,msg->yaw);
+    Px4Sp_Buf[0] = msg->x;
+    Px4Sp_Buf[1] = msg->y;
+    Px4Sp_Buf[2] = msg->z;
+    Px4Sp_Buf[3] = msg->yaw;
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "Px4_ctl_node"); // ros初始化，最后一个参数为节点名称
     ros::NodeHandle nh;
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>("mavros/state", 10, state_cb);
     ros::Subscriber local_pos_sub = nh.subscribe<geometry_msgs::PoseStamped>("mavros/local_position/pose", 10, local_pos_cb);
-    //ros::Subscriber command_sub = nh.subscribe("px4_command", 10, messageCallback);
+    ros::Subscriber command_sub = nh.subscribe("px4_command", 10, MsgSp_Callback);
     ros::Publisher setpoint_pub = nh.advertise<mavros_msgs::PositionTarget>("mavros/setpoint_raw/local", 10);
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
@@ -105,10 +119,10 @@ int main(int argc, char **argv)
         }
         else
         {
-            setpoint.position.x = 0;
-            setpoint.position.y = 0;
-            setpoint.position.z = 2;
-            setpoint.yaw = 3.14; 
+            setpoint.position.x = Px4Sp_Buf[0];
+            setpoint.position.y = Px4Sp_Buf[1];
+            setpoint.position.z = Px4Sp_Buf[2];
+            setpoint.yaw = Px4Sp_Buf[3]; 
         }
         // 发布位置信息，所以综上飞机只有先打开offboard模式然后解锁才能飞起来
         setpoint_pub.publish(setpoint);
