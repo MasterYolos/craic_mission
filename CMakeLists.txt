@@ -119,7 +119,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
-   ${CMAKE_CURRENT_SOURCE_DIR}/../../devel/include/craic_mission
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 ## Declare a C++ library
@@ -211,8 +211,12 @@ include_directories(${catkin_INCLUDE_DIRS})
 
 add_executable(offboard_ctl_node src/offboard_ctl.cpp)
 add_executable(Px4_ctl_node src/Px4_Ctl.cpp)
+add_executable(Mission_manager_node src/Mission_manager.cpp)
 # 注意他们要放在add_executable之后，即先告诉CMake是哪个节点，再告诉CMake它需要什么依赖
+
 add_dependencies(Px4_ctl_node ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(Mission_manager_node ${PROJECT_NAME}_generate_messages_cpp)
 
 target_link_libraries(offboard_ctl_node ${catkin_LIBRARIES})
 target_link_libraries(Px4_ctl_node ${catkin_LIBRARIES})
+target_link_libraries(Mission_manager_node ${catkin_LIBRARIES})
