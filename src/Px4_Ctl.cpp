@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     while (ros::ok() && !current_state.connected)
     {
         ros::spinOnce();
-        rate.sleep(ros::Duration(0.1));
+        rate.sleep();
     }
     // 这里开始收到数据 然后解锁启动
     while (Px4Sp_Buf[4] == 0)
@@ -136,5 +136,4 @@ int main(int argc, char **argv)
         rate.sleep();
     }
     return 0;
-}
 }
